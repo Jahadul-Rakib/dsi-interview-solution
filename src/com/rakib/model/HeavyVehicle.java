@@ -31,18 +31,8 @@ public class HeavyVehicle extends Vehicle {
     }
 
 
-    public void setEngineType(EngineType engineType) throws Exception {
-
-        if (engineType.equals(EngineType.DIESEL) || engineType.equals(EngineType.OIL) || engineType.equals(EngineType.GAS)) {
-            if (engineType.equals(EngineType.DIESEL)) {
-                this.engineType = engineType;
-            } else {
-                System.err.println("Heavy Car Engine Type Support Diesel Only.");
-            }
-        } else {
-            System.out.println("Only Support Given Enum String");
-        }
-
+    public void setEngineType() {
+        this.engineType = EngineType.DIESEL;
     }
 
     @Override

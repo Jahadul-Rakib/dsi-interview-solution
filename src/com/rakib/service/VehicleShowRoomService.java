@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class VehicleShowRoomService {
 
     Scanner scanner = new Scanner(System.in);
@@ -44,33 +45,26 @@ public class VehicleShowRoomService {
     private void heavyVehicle() throws Exception {
         HeavyVehicle heavyVehicle = new HeavyVehicle();
         heavyVehicle.setVehicleId();
+        heavyVehicle.setEngineType();
         print("Car Model Number ?");
         heavyVehicle.setModelNumber(scanner.next());
 
-        print("Car Engine Type (OIL/GAS/DIESEL) ?");
-        EngineType engineType = EngineType.valueOf(scanner.next());
-        if (!engineType.equals(EngineType.DIESEL)) {
-            print("Sorry Only DIESEL Type is Allow !!!");
-            goToMainMenu();
-        } else {
-            heavyVehicle.setEngineType(engineType);
-        }
 
-        print("Car Engine Power ?");
+        print("Car Engine Power ? (Number)");
         String engPower = scanner.next();
         boolean checkInt = isInt(engPower);
         if (checkInt) {
             heavyVehicle.setEnginePower(Integer.parseInt(engPower));
         }
 
-        print("Car Tire Size?");
+        print("Car Tire Size? (Number)");
         String TyreSize = scanner.next();
         boolean checkIntOfSize = isInt(engPower);
         if (checkIntOfSize) {
             heavyVehicle.setTireSize(Integer.parseInt(TyreSize));
         }
 
-        print("Car Weight ?");
+        print("Car Weight ? (Number)");
         String carWeight = scanner.next();
         boolean checkIntOfWeight = isInt(engPower);
         if (checkIntOfWeight) {
@@ -79,31 +73,25 @@ public class VehicleShowRoomService {
 
         heavyVehicles.add(heavyVehicle);
         print("ADD Success!!!");
+        goToMainMenu();
     }
 
     private void sportsVehicles() throws Exception {
         SportsVehicle sportsVehicle = new SportsVehicle();
         sportsVehicle.setVehicleId();
+        sportsVehicle.setEngineType();
         print("Car Model Number ?");
         sportsVehicle.setModelNumber(scanner.next());
 
-        print("Car Engine Type (OIL/GAS/DIESEL) ?");
-        EngineType engineType = EngineType.valueOf(scanner.next());
-        if (!engineType.equals(EngineType.OIL)) {
-            print("Sorry Only Oil Type is Allow !!!");
-            goToMainMenu();
-        } else {
-            sportsVehicle.setEngineType(engineType);
-        }
 
-        print("Car Engine Power ?");
+        print("Car Engine Power ? (Number)");
         String engPower = scanner.next();
         boolean checkInt = isInt(engPower);
         if (checkInt) {
             sportsVehicle.setEnginePower(Integer.parseInt(engPower));
         }
 
-        print("Car Tire Size?");
+        print("Car Tire Size? (Number)");
         String TireSize = scanner.next();
         boolean anIntOfTire = isInt(TireSize);
         if (anIntOfTire) {
@@ -116,6 +104,7 @@ public class VehicleShowRoomService {
         sportsVehicles.add(sportsVehicle);
         totalVisitor = totalVisitor + 20;
         print("ADD Success!!!");
+        goToMainMenu();
     }
 
     private void normalVehicleAdd() throws Exception {
@@ -125,14 +114,14 @@ public class VehicleShowRoomService {
         normalVehicle.setModelNumber(scanner.next());
         print("Car Engine Type (OIL/GAS/DIESEL) ?");
         normalVehicle.setEngineType(EngineType.valueOf(scanner.next()));
-        print("Car Engine Power ?");
+        print("Car Engine Power ? (Number)");
         String engPower = scanner.next();
         boolean checkInt = isInt(engPower);
         if (checkInt) {
             normalVehicle.setEnginePower(Integer.parseInt(engPower));
         }
 
-        print("Car Tire Size?");
+        print("Car Tire Size? (Number)");
         String TyreSize = scanner.next();
         boolean checkIntOfTire = isInt(TyreSize);
         if (checkIntOfTire) {
@@ -141,9 +130,24 @@ public class VehicleShowRoomService {
 
         normalVehicles.add(normalVehicle);
         print("ADD Success!!!");
+        goToMainMenu();
     }
 
     private void removeVehicle() throws Exception {
+        print("Please Insert Vehicles Id");
+        String vehicleId = scanner.next();
+        boolean removeNormal = normalVehicles.removeIf(o -> vehicleId.equals(vehicleId));
+        if (!removeNormal) {
+            boolean removeSports = sportsVehicles.removeIf(o -> vehicleId.equals(vehicleId));
+            totalVisitor = totalVisitor - 20;
+            if (!removeSports) {
+                boolean removeHeavy = heavyVehicles.removeIf(o -> vehicleId.equals(vehicleId));
+                print("Remove Successfully");
+                if (!removeHeavy) {
+                    print("This Vehicle Id is Not Exist !!!");
+                } else print("Remove Successfully.");
+            } else print("Remove Successfully.");
+        } else print("Remove Successfully.");
         goToMainMenu();
     }
 

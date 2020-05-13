@@ -13,7 +13,6 @@ public class SportsVehicle extends Vehicle {
         super(modelNumber, enginePower, tireSize);
         this.turbo = turbo;
         this.engineType = engineType;
-
     }
 
     public String getTurbo() {
@@ -29,17 +28,8 @@ public class SportsVehicle extends Vehicle {
         return engineType;
     }
 
-    public void setEngineType(EngineType engineType) throws Exception {
-
-        if (engineType.equals(EngineType.DIESEL) || engineType.equals(EngineType.OIL) || engineType.equals(EngineType.GAS)) {
-            if (engineType.equals(EngineType.OIL)) {
-                this.engineType = engineType;
-            } else {
-                System.err.println("Sports Car Engine Type Support Oil Only.");
-            }
-        } else {
-            System.out.println("Only Support Given Enum String");
-        }
+    public void setEngineType() {
+        this.engineType = EngineType.OIL;
     }
 
     @Override
