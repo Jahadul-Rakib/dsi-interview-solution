@@ -1,9 +1,12 @@
 package com.rakib;
 
+import com.rakib.service.VehicleShowRoomService;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("Hello");
+        VehicleShowRoomService showRoomService = new VehicleShowRoomService();
+        showRoomService.showCommand();
     }
+
 }
