@@ -1,4 +1,6 @@
 package com.rakib.model;
+
+import java.util.Random;
 import java.util.UUID;
 
 
@@ -16,18 +18,15 @@ public class Vehicle {
         this.modelNumber = modelNumber;
         this.enginePower = enginePower;
         this.tireSize = tireSize;
+
     }
 
     public UUID getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(UUID vehicleId) {
-        UUID generatedId = UUID.randomUUID();
-        if (vehicleId != null) {
-            this.vehicleId = vehicleId;
-        }
-        this.vehicleId = generatedId;
+    public void setVehicleId() {
+        this.vehicleId = UUID.randomUUID();
     }
 
     public String getModelNumber() {
@@ -43,7 +42,7 @@ public class Vehicle {
     }
 
     public void setEnginePower(Integer enginePower) {
-        this.enginePower = enginePower;
+        this.enginePower =  enginePower;
     }
 
     public Integer getTireSize() {
@@ -61,6 +60,6 @@ public class Vehicle {
                 ", modelNumber='" + modelNumber + '\'' +
                 ", enginePower=" + enginePower +
                 ", tireSize=" + tireSize +
-                '}';
+                ',';
     }
 }

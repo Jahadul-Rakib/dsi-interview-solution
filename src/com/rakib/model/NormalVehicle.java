@@ -2,10 +2,8 @@ package com.rakib.model;
 
 import com.rakib.enums.EngineType;
 
-import java.util.UUID;
-
 public class NormalVehicle extends Vehicle {
-    private UUID vehicleId;
+
     private EngineType engineType;
 
     public NormalVehicle() {
@@ -16,23 +14,22 @@ public class NormalVehicle extends Vehicle {
         this.engineType = engineType;
     }
 
-    public UUID getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(UUID vehicleId) {
-        UUID generatedId = UUID.randomUUID();
-        if (vehicleId != null) {
-            this.vehicleId = vehicleId;
-        }
-        this.vehicleId = generatedId;
-    }
 
     public EngineType getEngineType() {
         return engineType;
     }
 
     public void setEngineType(EngineType engineType) {
-        this.engineType = engineType;
+
+        if (engineType.equals(EngineType.DIESEL) || engineType.equals(EngineType.OIL) || engineType.equals(EngineType.GAS)) {
+            this.engineType = engineType;
+        } else {
+            System.out.println("Only Support Given Enum String");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "NormalVehicle{" + super.toString().concat(" engineType=" + engineType) + '}';
     }
 }

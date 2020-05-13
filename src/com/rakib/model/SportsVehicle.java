@@ -2,10 +2,7 @@ package com.rakib.model;
 
 import com.rakib.enums.EngineType;
 
-import java.util.UUID;
-
 public class SportsVehicle extends Vehicle {
-    private UUID vehicleId;
     private String turbo;
     private EngineType engineType;
 
@@ -17,18 +14,6 @@ public class SportsVehicle extends Vehicle {
         this.turbo = turbo;
         this.engineType = engineType;
 
-    }
-
-    public UUID getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(UUID vehicleId) {
-        UUID generatedId = UUID.randomUUID();
-        if (vehicleId != null) {
-            this.vehicleId = vehicleId;
-        }
-        this.vehicleId = generatedId;
     }
 
     public String getTurbo() {
@@ -44,19 +29,21 @@ public class SportsVehicle extends Vehicle {
         return engineType;
     }
 
-    public void setEngineType(EngineType engineType) {
-        if (engineType.equals(EngineType.OIL)) {
-            this.engineType = engineType;
+    public void setEngineType(EngineType engineType) throws Exception {
+
+        if (engineType.equals(EngineType.DIESEL) || engineType.equals(EngineType.OIL) || engineType.equals(EngineType.GAS)) {
+            if (engineType.equals(EngineType.OIL)) {
+                this.engineType = engineType;
+            } else {
+                System.err.println("Sports Car Engine Type Support Oil Only.");
+            }
         } else {
-            System.err.println("Sports Car Engine Type Support Oil Only.");
+            System.out.println("Only Support Given Enum String");
         }
     }
 
     @Override
     public String toString() {
-        return "SportsVehicle{" +
-                "turbo='" + turbo + '\'' +
-                ", engineType=" + engineType +
-                '}';
+        return "SportsVehicle{" + super.toString().concat(" turbo='" + turbo + '\'' + ", engineType=" + engineType) + '}';
     }
 }
