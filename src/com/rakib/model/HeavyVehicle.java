@@ -2,7 +2,10 @@ package com.rakib.model;
 
 import com.rakib.enums.EngineType;
 
+import java.util.UUID;
+
 public class HeavyVehicle extends Vehicle {
+    private UUID vehicleId;
     private Long weight;
     private EngineType engineType;
 
@@ -15,6 +18,18 @@ public class HeavyVehicle extends Vehicle {
         this.engineType = engineType;
     }
 
+    public UUID getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(UUID vehicleId) {
+        UUID generatedId = UUID.randomUUID();
+        if (vehicleId != null) {
+            this.vehicleId = vehicleId;
+        }
+        this.vehicleId = generatedId;
+    }
+
     public Long getWeight() {
         return weight;
     }
@@ -23,12 +38,12 @@ public class HeavyVehicle extends Vehicle {
         this.weight = weight;
     }
 
-    @Override
+
     public EngineType getEngineType() {
         return engineType;
     }
 
-    @Override
+
     public void setEngineType(EngineType engineType) {
         if (engineType.equals(EngineType.DIESEL)) {
             this.engineType = engineType;

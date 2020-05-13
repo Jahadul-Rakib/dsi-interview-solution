@@ -1,9 +1,9 @@
 package com.rakib.model;
-
-import com.rakib.enums.EngineType;
+import java.util.UUID;
 
 
 public class Vehicle {
+    private UUID vehicleId;
     private String modelNumber;
     private Integer enginePower;
     private Integer tireSize;
@@ -16,6 +16,18 @@ public class Vehicle {
         this.modelNumber = modelNumber;
         this.enginePower = enginePower;
         this.tireSize = tireSize;
+    }
+
+    public UUID getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(UUID vehicleId) {
+        UUID generatedId = UUID.randomUUID();
+        if (vehicleId != null) {
+            this.vehicleId = vehicleId;
+        }
+        this.vehicleId = generatedId;
     }
 
     public String getModelNumber() {
@@ -45,7 +57,8 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-                "modelNumber='" + modelNumber + '\'' +
+                "vehicleId=" + vehicleId +
+                ", modelNumber='" + modelNumber + '\'' +
                 ", enginePower=" + enginePower +
                 ", tireSize=" + tireSize +
                 '}';
